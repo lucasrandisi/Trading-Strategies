@@ -26,6 +26,7 @@ services:
             - pgsql
     pgsql:
         image: 'postgres:15'
+        container_name: pgsql
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
@@ -34,7 +35,7 @@ services:
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
         volumes:
-            - 'investing-strategies-pgsql:/var/lib/postgresql/data'
+            - 'trading-strategies-pgsql:/var/lib/postgresql/data'
             - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
             - sail
@@ -53,5 +54,5 @@ networks:
     sail:
         driver: bridge
 volumes:
-    investing-strategies-pgsql:
+    trading-strategies-pgsql:
         driver: local
