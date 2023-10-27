@@ -25,5 +25,8 @@ jobs:
       - name: Start Docker Compose
         run: docker exec laravel composer install
 
+      - name: Generate application encryption key
+        run: docker exec laravel php artisan key:generate
+
       - name: Run PHPUnit tests
         run: docker exec laravel vendor/bin/phpunit --bootstrap vendor/autoload.php tests
