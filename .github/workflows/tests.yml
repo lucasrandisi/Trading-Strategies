@@ -13,6 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
+      - name: Set .env file
+        run: |
+          touch .env
+          echo WWWUSER=${{ vars.WWWUSER }} >> .env
+          echo WWWGROUP=${{ vars.WWWGROUP }} >> .env
+
       - name: Start Docker Compose
         run: docker compose up -d
 
