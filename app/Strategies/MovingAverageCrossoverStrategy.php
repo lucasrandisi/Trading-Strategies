@@ -61,7 +61,7 @@ class MovingAverageCrossoverStrategy {
      * @param int $longPeriod
      */
     private static function calculateMovingAverages(Collection $cryptoPrices, int $shortPeriod, int $longPeriod) {
-        return Cache::rememberForever("{$cryptoPrices->first()->crypto_id}-$shortPeriod-$longPeriod", function () use ($cryptoPrices, $shortPeriod, $longPeriod) {
+        return Cache::remember("{$cryptoPrices->first()->crypto_id}-$shortPeriod-$longPeriod", 3600, function () use ($cryptoPrices, $shortPeriod, $longPeriod) {
             $averages = [];
             $previousShortPeriodAverage = null;
             $previousLongPeriodAverage = null;
