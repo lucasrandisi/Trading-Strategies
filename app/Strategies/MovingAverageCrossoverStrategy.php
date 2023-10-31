@@ -74,7 +74,8 @@ class MovingAverageCrossoverStrategy {
                     continue;
                 }
 
-                if ($key >= $longPeriod) {
+                // If $key + 1 == $longPeriod we have already calculated the $shortPeriodSum and $longPeriodSum. Otherwise, we update the sum by moving the window
+                if ($key + 1 > $longPeriod) {
                     $shortPeriodSum = $shortPeriodSum - $cryptoPrices[$key - $shortPeriod]->close + $cryptoPrice->close;
                     $longPeriodSum = $longPeriodSum - $cryptoPrices[$key - $longPeriod]->close + $cryptoPrice->close;
                 }
@@ -88,7 +89,9 @@ class MovingAverageCrossoverStrategy {
                     'long_period_average' => $longPeriodAverage
                 ];
 
-                if (empty($previousLongPeriodAverage) || empty($longPeriodAverage)) {
+
+                // At key + 1 == $longPeriod we cannot determine the signal because of the lack of the previous short and long averages
+                if ($key + 1 == $longPeriod) {
                     $previousShortPeriodAverage = $shortPeriodAverage;
                     $previousLongPeriodAverage = $longPeriodAverage;
                     continue;
