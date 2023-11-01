@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('strategies/moving-average-crossover', [StrategiesController::class, 'movingAverageCrossover']);
+Route::prefix('strategies')->group(function () {
+    Route::get('moving-average-crossover', [StrategiesController::class, 'movingAverageCrossover']);
+    Route::get('relative-strength-index', [StrategiesController::class, 'relativeStrengthIndex']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
