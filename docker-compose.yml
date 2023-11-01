@@ -16,6 +16,7 @@ services:
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
+            PHP_IDE_CONFIG: 'serverName=Laravel'
         volumes:
             - '.:/var/www/html'
         networks:
