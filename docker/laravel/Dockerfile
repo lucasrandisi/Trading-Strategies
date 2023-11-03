@@ -54,10 +54,19 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.2
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u $WWWUSER sail
 
-COPY start-container /usr/local/bin/start-container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY php.ini /etc/php/8.2/cli/conf.d/99-sail.ini
+
+COPY docker/laravel/start-container /usr/local/bin/start-container
+COPY docker/laravel/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/laravel/php.ini /etc/php/8.2/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
+
+
+COPY --chown=sail:sail composer.json composer.lock ./
+RUN composer install --no-scripts --no-autoloader
+
+COPY --chown=sail:sail . /var/www/html
+
+RUN composer dump-autoload --optimize && composer run-script post-autoload-dump
 
 EXPOSE 8000
 
