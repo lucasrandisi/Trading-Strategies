@@ -6,7 +6,7 @@ services:
             args:
                 WWWUSER: '${WWWUSER}'
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
+        image: trading_strategies_laravel
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
