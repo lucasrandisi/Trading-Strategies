@@ -13,9 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Set .env file
-        run: cp .env.example .env
-
       - name: Start Docker Compose
         run: docker compose up -d
 
