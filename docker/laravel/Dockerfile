@@ -65,7 +65,7 @@ COPY --chown=sail:sail composer.json composer.lock ./
 RUN composer install --no-scripts --no-autoloader
 
 COPY --chown=sail:sail . /var/www/html
-COPY --chown=sail:sail .env.example .env
+COPY --chown=sail:sail .env.example /var/www/html/.env
 
 RUN composer dump-autoload --optimize && composer run-script post-autoload-dump
 
