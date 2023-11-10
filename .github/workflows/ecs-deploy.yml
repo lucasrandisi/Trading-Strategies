@@ -37,8 +37,8 @@ env:
   ECS_CLUSTER: trading_strategies_cluster_5
   ECS_TASK_DEFINITION: deploy/ecs/trading_strategies_task.json
   CONTAINER_NAME: laravel
-  WWWUSER: ${{ env.WWWUSER }}
-  WWWGROUP: ${{ env.WWWGROUP }}
+  WWWUSER: 1000
+  WWWGROUP: 1000
 
 permissions:
   contents: read
