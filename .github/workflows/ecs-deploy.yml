@@ -32,7 +32,7 @@ on:
 
 env:
   AWS_REGION: sa-east-1                       
-  ECR_REPOSITORY: 738472568905.dkr.ecr.sa-east-1.amazonaws.com/trading_strategies_laravel          
+  ECR_REPOSITORY: trading_strategies_laravel          
   ECS_SERVICE: 	trading_strategies
   ECS_CLUSTER: trading_strategies_cluster_5
   ECS_TASK_DEFINITION: deploy/ecs/trading_strategies_task.json
