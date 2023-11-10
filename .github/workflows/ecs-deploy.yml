@@ -73,7 +73,7 @@ jobs:
           --file docker/laravel/Dockerfile \
           --build-arg WWWUSER=${{ env.WWWUSER }} \
           --build-arg WWWGROUP=${{ env.WWWGROUP }} \
-          --tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG  .
+          --tag $ECR_REGISTRY/$ECR_REPOSITORY:latest  .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
 
