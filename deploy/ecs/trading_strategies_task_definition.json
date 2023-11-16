@@ -16,7 +16,12 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
+            "environmentFiles": [
+                {
+                    "value": "arn:aws:s3:::lucasrandisi-bucket-1/.env.development",
+                    "type": "s3"
+                }
+            ],
             "mountPoints": [],
             "volumesFrom": [],
             "ulimits": [],
