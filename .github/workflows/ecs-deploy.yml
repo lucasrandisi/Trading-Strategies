@@ -1,8 +1,12 @@
 name: Deploy to Amazon ECS
 
 on:
-  workflow_dispatch:
-    
+  workflow_run:
+    workflows: [ "PHP Unit Testing" ]
+    types:
+      - completed
+    branches: [ "master" ]
+
 env:
   AWS_REGION: sa-east-1
   ECR_REPOSITORY: trading_strategies_laravel
@@ -20,6 +24,10 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'master'
 
     steps:
       - name: Checkout
